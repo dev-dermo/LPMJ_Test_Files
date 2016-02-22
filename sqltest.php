@@ -27,7 +27,7 @@ if( isset($_POST["author"]) &&
 	$year = get_post($conn, "year");
 	$isbn = get_post($conn, "isbn");
 
-	$query = "INSET INTO classics VALUES" . "('$author', '$title', '$category', '$year', '$isnb')";
+	$query = "INSERT INTO classics VALUES" . "('$author', '$title', '$category', '$year', '$isbn')";
 	$result = $conn->query($query);
 
 	if(!$result) {
