@@ -35,7 +35,7 @@ if( isset($_POST["author"]) &&
 	$result = $conn->query($query);
 
 	if(!$result) {
-		echo "INSERT failed: $query<br>" . $conn->connect_error . "<br><br>";
+		echo "INSERT failed: $query<br>" . $conn->error . "<br><br>";
 	}
 }
 
