@@ -21,7 +21,15 @@ if(isset($_SERVER["PHP_AUTH_USER"]) && isset($_SERVER["PHP_AUTH_PW"])) {
 		$salt2 = "pg!@";
 		$token = hash("ripemd128", "$salt1$pw_temp$salt2");
 
-		if($token == $row[3]) echo "$row[0] $row[1] : Hi $row[0], you are now logged in as '$row[2]'";
+		if($token == $row[3]) {
+			session_start();
+			$_SESSION["username"] = $un_temp;
+			$_SESSION["password"] = $pw_temp;
+			$_SESSION["forename"] = $row[0];
+			$_SESSION["surname"] = $row[1];
+			echo "$row[0] $row[1] : Hi $row[0], you are now logged in as '$row[2]'";
+			die("<p><a href='continue.php'>Click here to continue</a></p>");
+		}
 		else die("Invalid username/password combination");
 	}
 	else die("Invalid username/password combination");
